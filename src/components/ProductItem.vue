@@ -1,3 +1,4 @@
+<!--Component que define el aspecto de cada producto, usado en la vista HomeView. El ancla 'Get more details' lanza el evento goDetail (a HomeView) -->
 <template>
     <div class="product-item">
         <div class="col">

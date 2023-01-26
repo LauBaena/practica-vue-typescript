@@ -1,3 +1,4 @@
+<!--Vista que contiene los componentes NavLinks y CustomCard (con slots) para mostrar los datos del usuario registrado-->
 <template>
   <div>
     <NavLinks/>
@@ -34,8 +35,9 @@ export default defineComponent({
         CustomCard
   },
   setup() {
-    const { token, authUser, isLoading, fetchAuthUser } = useAuthUser();
-    fetchAuthUser(token.value);
+    //Accedemos a los getters y actions de authUser, a través del composable useAuthUser, para acceder al usuario registrado
+    const {authUser, isLoading, fetchAuthUser } = useAuthUser();
+    fetchAuthUser();
 
     return{
       authUser, 

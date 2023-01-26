@@ -1,6 +1,7 @@
+<!--Vista que contiene el formulario de login-->
 <template>
     <div class="login">
-        <h1 class="title">Login</h1>
+        <h1 class="title">Access to store</h1>
         <form class="form" @submit.prevent="getToken">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -21,15 +22,13 @@ import { defineComponent, ref } from 'vue';
 import useAuthUser from '../composables/useAuthUser';
 export default defineComponent ({
     setup() {
+        //Accedemos al action fetchToken de authUser, a través del composable useAuthUser, al que pasaremos los datos introducidos por el usuario al hacer submit
         const { fetchToken } = useAuthUser();
         let email = ref("");
         let password = ref("");
-        //const getToken = (event: SubmitEvent) => {
         const getToken = () => {
-            //event.preventDefault();
             fetchToken({email: email.value, password: password.value});
         }
-        
         return{
             email,
             password,
@@ -58,7 +57,6 @@ export default defineComponent ({
   padding: 40px;
   box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.3);
 }
-
 button{
     border: #2c3e50;
     background: #2c3e50;

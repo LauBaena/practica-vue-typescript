@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import haveRoleGuard from './auth-guard'
 
+//Definimos las rutas que tendrá la aplicación (home (/), profile (/profile), login (/login), detail (/detail/:id) y la vista de error si la ruta és incorrecta)
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -31,7 +32,6 @@ const routes: Array<RouteRecordRaw> = [
       return isNaN(id) ?  { id: null, userRole } : { id, userRole }
     }
   },
-  //Mostramos codigo de error si la ruta és incorrecta
   {
     path: "/:pathMatch(.*)",
     component: () => import(/* webpackChunkName: "notFound" */ '../views/NotFoundView.vue'),

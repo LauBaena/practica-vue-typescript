@@ -1,3 +1,4 @@
+<!--Component que define el nav con los links/rutas, a todos los productos y al perfil, y el logout (visible sólo en las vistas DetailView, HomeView y ProfileView) -->
 <template>
     <div>
         <nav>
@@ -32,17 +33,19 @@ import useAuthUser from '../composables/useAuthUser';
 
 export default defineComponent({
     setup(props, { emit }) {
-        const { deleteToken } = useAuthUser();
+        //Definimos el evento showAllProducts que se lanza al hacer click sobre el enlace 'All products'. Emitimos el evento showAll del componente padre (vista HomeView)
         const showAllProducts = () =>{
             emit("showAll")
         }
-
+        //Accedemos al método deleteToken del composable useAuthUser all que se llamará cuando se haga click sobre el logout
+        const { deleteToken } = useAuthUser();
         const logout = () => {
             deleteToken();
         }
+
         return { 
             showAllProducts,
-            logout 
+            logout,
         }
     },
 })

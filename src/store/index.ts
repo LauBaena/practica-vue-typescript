@@ -9,24 +9,15 @@ export interface IState {
 
 export default createStore({
   state: {
-    greeting: 'Bienvenidas!'
+    greeting: 'Welcome to Platzi Store'
   },
-
   getters: {
-    cambiarSaludo(state, saludo: string){
-      state.greeting = saludo;
-    }
   },
-
   mutations: {
-    saludo(state){
-      return state.greeting;
-    }
   },
-
   actions: {
   },
-
+  //Importamos al store los dos modulos creados (el store products y el store authUser)
   modules: {
     products: productsModule,
     authUser: authUserModule

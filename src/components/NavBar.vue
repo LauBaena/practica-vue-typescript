@@ -1,19 +1,19 @@
+<!--Component que define el NavBar que estará presente en todas las vistas (se aplica directamente en la App)-->
 <template>
     <nav>
         <p class="h2">             
             <img alt="Platzi logo" src="../assets/platzi_favicon.png" width = "100" height = "100">
             {{title}}
         </p>
-        <p class="h4">{{ greeting }}</p>
+        <h5>Your fake store</h5>
     </nav>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 interface NavbarProps {
   title: string,
-  greeting: string,
 }
 
 export default defineComponent({
@@ -24,15 +24,7 @@ export default defineComponent({
             required: true,
             default: "Platzi Store"
         },
-        greeting: {
-            type: String,
-            default: "Welcome"
-        }
-    },
-/*
-    setup(props: NavbarProps){
-
-    }*/
+    }
 })
 </script>
 
@@ -50,5 +42,8 @@ export default defineComponent({
     p{
         color: white;
         padding: 10px
+    }
+    h5{
+        padding: 20px
     }
 </style>

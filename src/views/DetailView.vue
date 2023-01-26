@@ -1,3 +1,4 @@
+<!--Vista que contiene los componentes NavLinks y CustomCard (con slots) para mostrar el detalle del producto seleccionado-->
 <template>
     <div>
         <NavLinks/>
@@ -50,15 +51,14 @@ export default defineComponent({
         }
     },
     setup(props) {
-        //Accedemos a los getters i actions del composable de Products que necesitamos para esta vista
+        //Accedemos a los getters y actions a través del composable useProducts, con los que accederemos al producto seleccionado por el usuario
         const {product, fetchProductById, isLoading} = useProducts();
         fetchProductById(props.id);
-
+        //Evento lanzado cuando el usuario clica sobre una de las imagenes. Hace que la imagen principal sea la seleccionada. 
         let activePic = ref();   
         const changeActivePic = (index: number) => {
             activePic.value = product.value.images[index];
         }
-
         return {
             product,
             isLoading,
@@ -76,11 +76,6 @@ export default defineComponent({
     display: flex;
     justify-content: center;
 }
-.buttons{
-    display: flex;
-    justify-content: center;
-}
-
 .pictures{
     width: 900px;
     display:flex;

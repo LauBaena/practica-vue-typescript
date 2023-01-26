@@ -1,3 +1,4 @@
+//Definimos el objeto AuthUser
 export interface AuthUser {
     id:         number;
     email:      string;

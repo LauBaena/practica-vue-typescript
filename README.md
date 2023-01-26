@@ -19,6 +19,10 @@ npm run build
 ```
 npm run lint
 ```
+### Ways to log in
+For example: 
+Email - "john@mail.com" / Password - "changeme"
+Email - "maria@mail.com" / Password - "12345"
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
