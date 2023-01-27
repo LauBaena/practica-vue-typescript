@@ -1,7 +1,7 @@
 <!-- Añadimos a la app el componente NavBar y las vistas creadas (router-view) -->
 <template>
   <div>
-    <NavBar/>
+    <NavBar title="Platzi Store"/>
     <router-view/>
   </div>
 </template>

@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 import ProductItem from '../components/ProductItem.vue';
 import useProducts from '../composables/useProducts';
 import NavigationButtons from '../components/NavigationButtons.vue';
@@ -41,12 +41,11 @@ export default defineComponent({
   },
   setup(){
     //Accedemos a los getters y actions de products, a través del composable useProducts
-    const {products, productsFiltered, isLoading, fetchProducts, fetchProductByTitle, fetchProductByPagination } = useProducts();
+    const {products, productsFiltered, isLoading, productsLength, fetchProducts, fetchProductByTitle, fetchProductByPagination } = useProducts();
     const router = useRouter();
     //Cargamos la lista completa de productos de la API para poder filtrar por título
     fetchProducts();
     let inputFilter = ref("");
-    const productsArray = products.value;
 
     //Tanto al cargar la vista como al clicar sobre el enlace 'All products', accederemos a los primeros 20 productos de la API 
     const limitShow = 20;
@@ -59,10 +58,10 @@ export default defineComponent({
     const validateInput = () => {
       const filter = inputFilter.value.toLowerCase();
       //Recorremos todos los productos para comprovar los que contienen el string introducido por el usuario 
-      for(let i = 0; i < productsArray.length; i++){
-        if (productsArray[i].title.toLowerCase().includes(filter)){    
+      for(let i = 0; i < productsLength.value; i++){
+        if (products.value[i].title.toLowerCase().includes(filter)){    
           //Entre los productos que lo contienen, dividimos por palabras el título de éstos
-          const titleArray = productsArray[i].title.split(" ");
+          const titleArray = products.value[i].title.split(" ");
           for(let j = 0; j < titleArray.length; j++){
             //Seleccionamos la palabra exacta que contiene el string y hacemos la llamada a la API que devolverá los productos filtrados
             if(titleArray[j].toLowerCase().includes(filter)){
@@ -82,12 +81,10 @@ export default defineComponent({
         fetchProductByPagination({offset: offset, limit: limitShow});
       }
     }
+  
     //Evento que se lanza al hacer click en 'See next 20' para mostrar los siguientes 20 productos. 
     const showNext = () =>{
-      const productsLength = productsArray.length;
-      console.log(productsLength)
-      console.log(offset);
-      if (offset >= productsLength){
+      if (offset >= productsLength.value){
         alert('There are no more products')
       }else{
         offset = offset + 20;

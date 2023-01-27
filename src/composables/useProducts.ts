@@ -11,6 +11,7 @@ const useProducts = () => {
         productsFiltered: computed(()=> store.getters['products/getProductsPagination']),
         isLoading: computed(()=> store.getters['products/getIsLoading']),
         product: computed(()=> store.getters['products/getProduct']),
+        productsLength: computed(()=> store.getters['products/getProductsLength']),
 
         //ACTIONS: Accedemos a los actions del store products
         fetchProducts: () => store.dispatch('products/fetchProducts'),
